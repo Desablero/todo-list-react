@@ -25,10 +25,22 @@ export default class App extends Component {
 
   render() {
 
+      const onDelete = (id) => {
+          this.setState(({todoData}) => {
+              const idx = todoData.findIndex(el => el.id === id)
+              const oldState = todoData
+              const newState = [...oldState.slice(0,idx), ...oldState.slice(idx+1)]
+              return {
+                  todoData: newState
+              }
+          })
+      }
+
     return(
         <div>
             <h1>ToDoList</h1>
-            <ToDoList todos={this.state.todoData}/>
+            <ToDoList todos={this.state.todoData}
+                        onDelete={onDelete}/>
         </div>
     )
   }
