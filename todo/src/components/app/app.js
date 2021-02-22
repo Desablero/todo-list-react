@@ -36,11 +36,13 @@ export default class App extends Component {
           })
       }
 
+
     return(
         <div>
             <h1>ToDoList</h1>
             <ToDoList todos={this.state.todoData}
-                        onDelete={onDelete}/>
+                        onDelete={onDelete}
+                        />
         </div>
     )
   }
