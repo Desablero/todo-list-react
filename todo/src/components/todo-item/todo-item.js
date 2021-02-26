@@ -17,20 +17,31 @@ export default class ToDoItem extends Component {
 
         const onImportant = () => {
             this.setState(({important}) => {
-                console.log(important)
                 return {
                     important: !important
                 }
             })
         }
+        const onLabelClick = () => {
+            this.setState(({done}) => {
+                return {
+                    done: !done
+                }
+            })
+        }
+
 
         if (important) {
             clazzName += '-important'
         }
+        if (done) {
+            clazzName += '-done'
+        }
 
         return (
             <div>
-                <span className={clazzName}> {label} </span>
+                <span className={clazzName}
+                        onClick={onLabelClick}> {label} </span>
                 <button onClick={onImportant}>!</button>
                 <button onClick={() => {onDelete(id)}}>Del</button>
             </div>
