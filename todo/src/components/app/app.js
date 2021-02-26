@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ToDoList from "../todo-list";
+import AddItem from "../add-item";
 import './app.css'
 
 export default class App extends Component {
@@ -21,8 +22,6 @@ export default class App extends Component {
     }
 }
 
-
-
   render() {
 
       const onDelete = (id) => {
@@ -36,13 +35,24 @@ export default class App extends Component {
           })
       }
 
+      const onAddItem = (value) => {
+        this.setState(({todoData}) => {
+            const oldData = todoData
+            const newItem = this.createItem(value)
+            const newData = [...oldData, newItem]
+            return {
+                todoData: newData
+            }
+          })
+      }
+
 
     return(
         <div>
             <h1>ToDoList</h1>
             <ToDoList todos={this.state.todoData}
-                        onDelete={onDelete}
-                        />
+                      onDelete={onDelete}/>
+            <AddItem onAddItem={onAddItem}/>
         </div>
     )
   }

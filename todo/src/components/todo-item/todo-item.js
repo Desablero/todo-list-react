@@ -30,7 +30,6 @@ export default class ToDoItem extends Component {
             })
         }
 
-
         if (important) {
             clazzName += '-important'
         }
