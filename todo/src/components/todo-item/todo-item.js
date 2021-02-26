@@ -3,32 +3,13 @@ import './todo-item.css'
 
 export default class ToDoItem extends Component {
 
-    state = {
-        important: false,
-        done: false
-    }
-
     render() {
 
-        const {id, label, onDelete} = this.props
-        const {important, done} = this.state
+        const {id, label, onDelete, onDone, onImportant} = this.props
+        const {important, done} = this.props
 
         let clazzName = 'todo-item'
 
-        const onImportant = () => {
-            this.setState(({important}) => {
-                return {
-                    important: !important
-                }
-            })
-        }
-        const onLabelClick = () => {
-            this.setState(({done}) => {
-                return {
-                    done: !done
-                }
-            })
-        }
 
         if (important) {
             clazzName += '-important'
@@ -40,8 +21,8 @@ export default class ToDoItem extends Component {
         return (
             <div>
                 <span className={clazzName}
-                        onClick={onLabelClick}> {label} </span>
-                <button onClick={onImportant}>!</button>
+                        onClick={() => onDone(id)}> {label} </span>
+                <button onClick={() => onImportant(id)}>!</button>
                 <button onClick={() => {onDelete(id)}}>Del</button>
             </div>
         )

@@ -26,7 +26,7 @@ export default class AddItem extends Component{
         return (
             <form onSubmit={onSubmit}>
                 <input type='text'
-                       placeholder="Введите имя элемента"
+                       placeholder="Добавить элемент"
                        value={this.state.label}
                        onChange={this.onChangeItem.bind(this)}
                 />

@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
+
 import ToDoList from "../todo-list";
 import AddItem from "../add-item";
+import ItemFilter from "../item-filter";
 import './app.css'
 
 export default class App extends Component {
@@ -10,7 +12,8 @@ export default class App extends Component {
             this.createItem('Git commit'),
             this.createItem('Drink tea'),
             this.createItem('Create ToDo App'),
-        ],
+            ],
+        itemStatusFilter: ''
     }
 
     createItem (label) {
@@ -23,6 +26,29 @@ export default class App extends Component {
 }
 
   render() {
+
+      const onDone = (id) => {
+          const idx = this.state.todoData.findIndex(el => el.id === id)
+          this.setState(({todoData}) => {
+              const newState = todoData
+              newState[idx].done = !newState[idx].done
+              return {
+                  todoData: newState
+              }
+          })
+
+      }
+
+      const onImportant = (id) => {
+          const idx = this.state.todoData.findIndex(el => el.id === id)
+          this.setState(({todoData}) => {
+              const newState = todoData
+              newState[idx].important = !newState[idx].important
+              return {
+                  todoData: newState
+              }
+          })
+      }
 
       const onDelete = (id) => {
           this.setState(({todoData}) => {
@@ -46,12 +72,24 @@ export default class App extends Component {
           })
       }
 
+      const onChangeFilter = (filter) => {
+          this.setState(({itemStatusFilter}) => {
+              return {itemStatusFilter: filter}
+          })
+      }
+
+
 
     return(
         <div>
             <h1>ToDoList</h1>
+            <ItemFilter onChangeFilter={onChangeFilter}/>
             <ToDoList todos={this.state.todoData}
-                      onDelete={onDelete}/>
+                      onDone={onDone}
+                      onImportant={onImportant}
+                      onDelete={onDelete}
+                      itemStatusFilter={this.state.itemStatusFilter}
+            />
             <AddItem onAddItem={onAddItem}/>
         </div>
     )
