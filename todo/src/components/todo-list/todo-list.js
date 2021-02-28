@@ -6,7 +6,6 @@ export default class ToDoList extends Component {
     render() {
         const {todos, onDelete, itemStatusFilter,
                 onDone, onImportant, searchingElement} = this.props
-        console.log(searchingElement)
 
         const element = todos
             .filter((el) => {

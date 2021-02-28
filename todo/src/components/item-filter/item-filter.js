@@ -12,19 +12,15 @@ export default class ItemFilter extends Component {
         const {onChangeFilter, onSearchElement} = this.props
 
         const onChangeInput = (e) => {
+            e.preventDefault()
             const value = e.target.value
             this.setState(() => {
                 return {inputValue: value}
             })
+            onSearchElement(this.state.inputValue)
+            
         }
 
-        const onSubmit = (e) => {
-            e.preventDefault()
-            onSearchElement(this.state.inputValue)
-            this.setState(() => {
-                return {inputValue: ''}
-            })
-        }
 
         const onChangeButton = (filter) => {
             onChangeFilter(filter)
@@ -33,7 +29,7 @@ export default class ItemFilter extends Component {
 
         return (
             <div>
-                <form onSubmit={onSubmit}>
+
                 <input type="text"
                        placeholder='Найти элемент'
                        onChange={onChangeInput}
@@ -43,7 +39,6 @@ export default class ItemFilter extends Component {
                 <button onClick={() => {onChangeButton('all')}}>All</button>
                 <button onClick={() => {onChangeButton('done')}}>Done</button>
                 <button onClick={() => {onChangeButton('important')}}>Important</button>
-                </form>
             </div>
         )
     }
