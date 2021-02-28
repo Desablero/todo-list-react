@@ -2,11 +2,6 @@
 
 }
 
-.todo-item-important {
-    color: red;
-    font-size: 1.2rem;
-}
-
 .todo-item-done {
     text-decoration: line-through;
 }

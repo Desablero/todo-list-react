@@ -18,7 +18,7 @@ export default class ItemFilter extends Component {
                 return {inputValue: value}
             })
             onSearchElement(this.state.inputValue)
-            
+
         }
 
 

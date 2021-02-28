@@ -8,19 +8,22 @@ export default class ToDoItem extends Component {
         const {id, label, onDelete, onDone, onImportant} = this.props
         const {important, done} = this.props
 
-        let clazzName = 'todo-item'
-
+        let clazzName
+        let styleItem
 
         if (important) {
-            clazzName += '-important'
+            styleItem = {
+                color: 'red',
+                fontSize: 20
+            }
         }
         if (done) {
-            clazzName += '-done'
+            clazzName = 'todo-item-done'
         }
 
         return (
             <div>
-                <span className={clazzName}
+                <span style={styleItem} className={clazzName}
                         onClick={() => onDone(id)}> {label} </span>
                 <button onClick={() => onImportant(id)}>!</button>
                 <button onClick={() => {onDelete(id)}}>Del</button>
