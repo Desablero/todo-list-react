@@ -5,9 +5,16 @@ export default class ToDoList extends Component {
 
     render() {
         const {todos, onDelete, itemStatusFilter,
-                onDone, onImportant} = this.props
+                onDone, onImportant, searchingElement} = this.props
+        console.log(searchingElement)
 
         const element = todos
+            .filter((el) => {
+                if (el.label.toLowerCase().includes(searchingElement.toLowerCase())) {
+                    return el
+                } else return null
+            })
+
             .filter((el) => {
                 if(itemStatusFilter === 'done') {
                     return el.done

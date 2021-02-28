@@ -13,7 +13,8 @@ export default class App extends Component {
             this.createItem('Drink tea'),
             this.createItem('Create ToDo App'),
             ],
-        itemStatusFilter: ''
+        itemStatusFilter: '',
+        searchingElement: ''
     }
 
     createItem (label) {
@@ -78,17 +79,26 @@ export default class App extends Component {
           })
       }
 
+      const onSearchElement = (value) => {
+            this.setState(({searchingElement}) => {
+                return {
+                    searchingElement: value
+                }
+          })
+      }
 
 
     return(
         <div>
             <h1>ToDoList</h1>
-            <ItemFilter onChangeFilter={onChangeFilter}/>
+            <ItemFilter onChangeFilter={onChangeFilter}
+                        onSearchElement={onSearchElement}/>
             <ToDoList todos={this.state.todoData}
                       onDone={onDone}
                       onImportant={onImportant}
                       onDelete={onDelete}
                       itemStatusFilter={this.state.itemStatusFilter}
+                      searchingElement={this.state.searchingElement}
             />
             <AddItem onAddItem={onAddItem}/>
         </div>
